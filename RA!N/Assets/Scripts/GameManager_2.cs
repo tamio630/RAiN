@@ -6,15 +6,21 @@ using UnityEngine.UI;
 
 public class GameManager_2 : MonoBehaviour
 {
+    public const int MORNING_SCHOOL = 1;    //朝
+    public const int NOON_SCHOOL = 2;       //昼
+    public const int EVENING_SCHOOL = 3;    //夕方
+
+    public GameObject schoolPanels;
+
     public const int MAN_A = 1;
     public int count = 0;   //話しかけた回数
-    public int week = 0;    //何週回ったか
 
+    int schoolNo;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        schoolNo = MORNING_SCHOOL;  //スタート時は朝
     }
 
     // Update is called once per frame
@@ -23,21 +29,37 @@ public class GameManager_2 : MonoBehaviour
         
     }
 
+    void DisplayWalls()
+    {
+        switch (schoolNo)
+        {
+            case MORNING_SCHOOL:
+                schoolPanels.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+                break;
+            case NOON_SCHOOL:
+                schoolPanels.transform.localPosition = new Vector3(-850.0f, 0.0f, 0.0f);
+                break;
+            case EVENING_SCHOOL:
+                schoolPanels.transform.localPosition = new Vector3(-1700.0f, 0.0f, 0.0f);
+                break;
+        }
+    }
+
     public void PushHuman()
     {
-        count++;
+        schoolNo++;
+        if (schoolNo > EVENING_SCHOOL)
+        {
+            schoolNo = MORNING_SCHOOL;
+        }
+        DisplayWalls();
+
+        /*count++;
         Debug.Log(count);
         if (count == 3)
         {
-            week++;
             count = 0;
             SceneManager.LoadScene("EndScene");
-        }
-
-        if (week == 6 && count == 2)
-        {
-            //雨の背景にする
-        }
-
+        }*/
     }
 }
