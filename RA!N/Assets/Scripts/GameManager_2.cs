@@ -14,6 +14,7 @@ public class GameManager_2 : MonoBehaviour
 
     public const int MAN_A = 1;
     public int count = 0;   //話しかけた回数
+    public bool endDay = false; //夕方に3回話した後か
 
     int schoolNo;
     
@@ -26,7 +27,10 @@ public class GameManager_2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (endDay==true)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
 
     void DisplayWalls()
@@ -47,12 +51,23 @@ public class GameManager_2 : MonoBehaviour
 
     public void PushHuman()
     {
-        schoolNo++;
-        if (schoolNo > EVENING_SCHOOL)
+        if (count == 3)
         {
-            schoolNo = MORNING_SCHOOL;
+            if (schoolNo == EVENING_SCHOOL)
+            {
+                endDay = true;
+            }
+            else
+            {
+                schoolNo++;
+                DisplayWalls();
+            }
+            count = 0;
         }
-        DisplayWalls();
+        else
+        {
+            count++;
+        }
 
         /*count++;
         Debug.Log(count);
