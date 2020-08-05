@@ -57,6 +57,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GameManager_2.cs" />
+     <Compile Include="Assets\Scripts\NovelManager.cs" />
      <Compile Include="Assets\Scripts\TitleManager.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/tamio/Desktop/文化表現部/共同制作/RA!N/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
